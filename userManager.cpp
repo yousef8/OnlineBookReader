@@ -1,6 +1,7 @@
 #include "userManager.h"
 #include "utilities.h"
 #include "user.h"
+#include "library.h"
 
 #include <iostream>
 #include <string>
@@ -23,6 +24,27 @@ void UserManager::listUsers()
 
 void UserManager::login()
 {
+    for (int count {1}; count <= 3; count++) {
+        std::cout << "Enter username (no spaces) : ";
+        std::string userName;
+        std::cin >> userName;
+
+        if (userNameToObjMap.count(userName)){
+            User loggedUser = userNameToObjMap[userName];
+            std::cout << "Enter password : ";
+            std::string password;
+            std::cin >> password;
+            if (loggedUser.getPassword() == password){
+                Library library(loggedUser);
+                return library.accessSystem();
+            }
+        }
+
+        std::cout << "Wrong Username or Password!!!!\n";
+        std::cout << (3 - count ) << " Tries left\n";
+    }
+
+    return;
 }
 
 void UserManager::signUp()

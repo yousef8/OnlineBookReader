@@ -2,11 +2,16 @@
 #define _library_H_
 
 #include "user.h"
+#include "book.h"
+#include <map>
 
 class Library {
 
 private:
     User loggedUser;
+    std::map<int, Book> isbnToBook;
+
+    void addBook();
 
     void adminView();
 

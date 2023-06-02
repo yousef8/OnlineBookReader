@@ -1,8 +1,28 @@
 #include "library.h"
 #include "utilities.h"
 #include "user.h"
+#include "book.h"
 
 Library::Library(User loggedUser): loggedUser{loggedUser} {
+}
+
+void Library::addBook() {
+    
+    for (int count {1}; count <= 3; count++) {
+        std::cout << "Enter ISBN : ";
+        int isbn;
+        std::cin >> isbn;
+
+        if (!isbnToBook.count(isbn)){
+            Book book;
+            book.readBook(isbn); 
+            isbnToBook[isbn] = book;
+            break;
+        }
+
+        std::cout << "A book with this ISBN already exist!!!!\n";
+        std::cout << (3 - count ) << " Tries left\n";
+    }
 }
 
 void Library::adminView() {
@@ -14,7 +34,7 @@ void Library::adminView() {
             loggedUser.print();
             break;
         case 2:
-            std::cout << "To Do" << "\n";
+            addBook();
             break;
         case 3:
             std::cout << "To Do" << "\n";

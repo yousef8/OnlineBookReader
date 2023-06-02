@@ -13,6 +13,8 @@ private:
 
     void addBook();
 
+    void listBooks();
+
     void adminView();
 
     void userView();

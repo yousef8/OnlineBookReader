@@ -25,6 +25,11 @@ void Library::addBook() {
     }
 }
 
+void Library::listBooks() {
+    for (std::pair<int, Book> p : isbnToBook)
+        p.second.print(), std::cout << "\n";
+}
+
 void Library::adminView() {
     std::cout << "\n\nHello " << loggedUser.getName() << " | " << "Admin View\n";
     int choice = showReadMenu({"View Profile", "Add Book", "List Books", "Log Out"});
@@ -37,7 +42,7 @@ void Library::adminView() {
             addBook();
             break;
         case 3:
-            std::cout << "To Do" << "\n";
+            listBooks();
             break;
         case 4:
             return; 

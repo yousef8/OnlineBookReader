@@ -6,6 +6,6 @@
 #include <vector>
 
 int readInt(int low, int high);
-int showReadMenu(const std::vector<std::string> &choices);
+int showReadMenu(const std::vector<std::string> &choices, std::string header = "Menu");
 
 #endif

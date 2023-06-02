@@ -16,9 +16,9 @@ int readInt(int low, int high)
     return readInt(low, high);
 }
 
-int showReadMenu(const std::vector<std::string> &choices)
+int showReadMenu(const std::vector<std::string> &choices, std::string header)
 {
-    std::cout << "\nMenu:\n";
+    std::cout << "\n" << header << " :\n";
     for (int choice{0}; choice < (int)choices.size(); choice++)
     {
         std::cout << "\t" << choice + 1 << " : " << choices[choice] << "\n";

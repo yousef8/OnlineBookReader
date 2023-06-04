@@ -49,7 +49,7 @@ void Session::start() {
     int choice = showReadMenu({"Next", "Previous", "Stop"});
     switch (choice) {
         case 1:
-            ++currPage;
+            (currPage == book.getNumOfPages()) ? currPage : ++currPage;
             start();
             break;
         case 2:

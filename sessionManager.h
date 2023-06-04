@@ -18,6 +18,7 @@ class SessionManager{
 
         void listSessions();
         void startSession(Book book);
+        void listSelectSession();
 };
 
 #endif

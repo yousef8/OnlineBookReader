@@ -17,7 +17,7 @@ private:
 
     void listBooks();
 
-    void listSessions();
+    void listSelectSession();
 
     void listSelectBook();
 

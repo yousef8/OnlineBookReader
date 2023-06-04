@@ -64,9 +64,9 @@ void Library::listSelectBook() {
     sessionManager.startSession(currBook);
 }
 
-void Library::listSessions() {
+void Library::listSelectSession() {
     std::cout << "\n";
-    sessionManager.listSessions();
+    sessionManager.listSelectSession();
     std::cout << "\n";
 }
 
@@ -101,7 +101,7 @@ void Library::userView() {
             return userView();
             break;
         case 2:
-            listSessions();
+            listSelectSession();
             return userView();
             break;
         case 3:

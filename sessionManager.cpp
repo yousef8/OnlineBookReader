@@ -1,5 +1,6 @@
 #include "sessionManager.h"
 #include "session.h"
+#include "utilities.h"
 
 #include <iostream>
 #include <map>
@@ -26,5 +27,17 @@ void SessionManager::startSession(Book book) {
     Session* session = new Session(book);
     session->start();
     sessions.insert(std::pair<int, Session*>(++lastId, session));
+    return;
+}
+
+void SessionManager::listSelectSession() {
+    listSessions();
+    if (sessions.empty())
+        return;
+
+    std::cout << "Which session to open:\n";
+    int choice = readInt(1,static_cast<int>(sessions.size()));
+    Session* session = sessions[choice];
+    session->start();
     return;
 }

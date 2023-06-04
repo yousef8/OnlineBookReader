@@ -2,6 +2,12 @@
 #include "utilities.h"
 #include "user.h"
 #include "book.h"
+#include "session.h"
+#include "sessionManager.h"
+
+#include <string>
+#include <vector>
+#include <iostream>
 
 Library::Library(User loggedUser): loggedUser{loggedUser} {
     Book book1;
@@ -38,6 +44,32 @@ void Library::listBooks() {
         p.second.print(), std::cout << "\n";
 }
 
+void Library::listSelectBook() {
+
+    // Show available books
+    std::vector<std::string> books;
+    for (auto p : isbnToBook)
+        books.push_back(p.second.getTitle());
+    
+    int choice = showReadMenu(books, "Our current book collection");
+
+    // Get the chosen book
+    auto record = isbnToBook.begin();
+
+    while (--choice)
+        ++record;
+    
+    // Start Session
+    Book currBook = record->second;
+    sessionManager.startSession(currBook);
+}
+
+void Library::listSessions() {
+    std::cout << "\n";
+    sessionManager.listSessions();
+    std::cout << "\n";
+}
+
 void Library::adminView() {
     std::cout << "\n\nHello " << loggedUser.getName() << " | " << "Admin View\n";
     int choice = showReadMenu({"View Profile", "Add Book", "List Books", "Log Out"});
@@ -60,8 +92,25 @@ void Library::adminView() {
 }
 
 void Library::userView() {
-    std::cout << "User View\n";
-    return;
+    std::cout << "\n\nHello " << loggedUser.getName() << " | " << "User View\n";
+    int choice = showReadMenu({"View Profile", "List & Select from My Reading History", "List & Select from Available Books", "Log Out"});
+
+    switch (choice) {
+        case 1:
+            loggedUser.print();
+            return userView();
+            break;
+        case 2:
+            listSessions();
+            return userView();
+            break;
+        case 3:
+            listSelectBook();
+            return userView();
+            break;
+        case 4:
+            return;
+    }
 }
 
 void Library::accessSystem() {

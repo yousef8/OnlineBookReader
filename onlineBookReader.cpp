@@ -46,6 +46,26 @@ class OnlineReader {
                 }
             }
         }
+
+        void adminView() {
+            while(true){
+                int choice = showReadMenu({"View Profile", "Add Book", "List Books", "Log Out"});
+
+                switch (choice){
+                    case 1:
+                        userManager.getLoggedUser().print();
+                        break;
+                    case 2:
+                        bookManager.addBook();
+                        break;
+                    case 3:
+                        bookManager.listBooks(true);
+                        break; 
+                    case 4:
+                        return;
+                }
+            }
+        }
     public:
         OnlineReader() = default;
 
@@ -53,13 +73,13 @@ class OnlineReader {
             // Login Phase
             userManager.accessSystem();
             if (!userManager.getLoggedUser().getId()) {
-                std::cout << "Goodbye from run\n";
+                std::cout << "GoodBye\n";
                 return;
             }
 
             // Actual System
             if (userManager.getLoggedUser().getIsAdmin())
-                std::cout << "To Do\n";
+                adminView();
             else
                 userView();
 

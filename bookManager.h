@@ -16,7 +16,11 @@ public:
 
     void addBook();
 
-    void listBooks();
+    void listBooks(bool adminView = false);
+
+    const Book& getBook(int idx);
+
+    int getNumOfBooks() const;
 
 };
 

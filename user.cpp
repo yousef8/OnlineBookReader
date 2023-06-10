@@ -14,27 +14,27 @@ int User::getId() const
     return id;
 }
 
-std::string User::getUserName()
+std::string User::getUserName() const
 {
     return userName;
 }
 
-std::string User::getName()
+std::string User::getName() const
 {
     return name;
 }
 
-std::string User::getEmail()
+std::string User::getEmail() const
 {
     return email;
 }
 
-std::string User::getPassword()
-{
+std::string User::getPassword() const
+{ 
     return password;
 }
 
-bool User::getIsAdmin()
+bool User::getIsAdmin() const
 {
     return isAdmin;
 }
@@ -90,7 +90,7 @@ void User::readUser(std::string userName, int id)
     setPassword(str);
 }
 
-void User::print()
+void User::print() const
 {
     std::cout << "\nName : " << getName();
     std::cout << "\nusername : " << getUserName();

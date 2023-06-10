@@ -1,6 +1,7 @@
 #include "sessionManager.h"
 #include "session.h"
 #include "utilities.h"
+#include "book.h"
 
 #include <iostream>
 #include <map>
@@ -15,7 +16,7 @@ SessionManager::~SessionManager() {
     std::cout << "Deleted All Sessions\n";
 }
 
-void SessionManager::listSessions() {
+void SessionManager::listSessions() const {
     for (std::pair<int, Session*> p : sessions){
         std::cout << p.first << ". " << p.second->getBook()->getTitle()
             << " - " <<  p.second->getCurrPage() << "/" << p.second->getBook()->getNumOfPages()
@@ -23,21 +24,21 @@ void SessionManager::listSessions() {
     }
 }
 
-void SessionManager::startSession(Book book) {
+void SessionManager::startSession(const Book& book) {
     Session* session = new Session(book);
     session->start();
     sessions.insert(std::pair<int, Session*>(++lastId, session));
     return;
 }
 
-void SessionManager::listSelectSession() {
-    listSessions();
-    if (sessions.empty())
-        return;
+Session* SessionManager::getSession(int idx) const{
+    return sessions.at(idx);
+}
 
-    std::cout << "Which session to open:\n";
-    int choice = readInt(1,static_cast<int>(sessions.size()));
-    Session* session = sessions[choice];
-    session->start();
-    return;
+void SessionManager::startSession(Session* currSession) {
+    currSession->start();
+}
+
+int SessionManager::getNumOfSessions() const {
+    return sessions.size();
 }

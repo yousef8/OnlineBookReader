@@ -16,9 +16,11 @@ class SessionManager{
         SessionManager();
         ~SessionManager();
 
-        void listSessions();
-        void startSession(Book book);
-        void listSelectSession();
+        void listSessions() const;
+        void startSession(const Book& book);
+        Session* getSession(int idx) const;
+        void startSession(Session* currSession);
+        int getNumOfSessions() const;
 };
 
 #endif

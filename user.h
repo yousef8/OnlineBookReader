@@ -20,11 +20,11 @@ public:
 
     // Getters
     int getId() const;
-    std::string getUserName();
-    std::string getName();
-    std::string getEmail();
-    std::string getPassword();
-    bool getIsAdmin();
+    std::string getUserName() const ;
+    std::string getName() const ;
+    std::string getEmail() const ;
+    std::string getPassword() const ;
+    bool getIsAdmin() const ;
 
     // Setters
     void setId(int id);
@@ -36,7 +36,7 @@ public:
 
     void readUser(std::string userName, int id);
 
-    void print();
+    void print() const;
 };
 
 #endif

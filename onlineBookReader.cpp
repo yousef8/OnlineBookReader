@@ -15,15 +15,55 @@ class OnlineReader {
         BookManager bookManager;
         UserManager userManager;
     
+        void userView() {
+            while (true){
+                int choice = showReadMenu({"View Profile", "List & Select from Reading History", "List & Select from Available Books", "Log Out"});
+
+                switch(choice) {
+                    case 1:
+                        userManager.getLoggedUser().print();
+                        break;
+                    case 2:
+                        {
+                        sessionManager.listSessions();
+                        int sessionIdx = readInt(0, sessionManager.getNumOfSessions());
+                        if (!sessionIdx)
+                            continue;
+                        sessionManager.startSession(sessionManager.getSession(sessionIdx));
+                        break;
+                        }
+                    case 3:
+                    {
+                        bookManager.listBooks();
+                        int bookIdx = readInt(0, bookManager.getNumOfBooks());
+                        if (!bookIdx)
+                            continue;
+                        sessionManager.startSession(bookManager.getBook(bookIdx));
+                        break;
+                    }
+                    case 4:
+                        return;
+                }
+            }
+        }
     public:
         OnlineReader() = default;
+
         void Run() {
             // Login Phase
             userManager.accessSystem();
             if (!userManager.getLoggedUser().getId()) {
                 std::cout << "Goodbye from run\n";
                 return;
-            } 
+            }
+
+            // Actual System
+            if (userManager.getLoggedUser().getIsAdmin())
+                std::cout << "To Do\n";
+            else
+                userView();
+
+            return Run(); 
         }
     
 };

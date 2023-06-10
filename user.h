@@ -6,12 +6,12 @@
 class User
 {
 private:
-    int id;
-    std::string userName;
-    std::string name;
-    std::string email;
-    std::string password;
-    bool isAdmin;
+    int id {0};
+    std::string userName {""};
+    std::string name {""};
+    std::string email {""};
+    std::string password {""};
+    bool isAdmin {0};
 
 public:
     User();
@@ -19,7 +19,7 @@ public:
     User(int id, std::string userName, std::string name, std::string email, std::string password, bool isAdmin);
 
     // Getters
-    int getId();
+    int getId() const;
     std::string getUserName();
     std::string getName();
     std::string getEmail();

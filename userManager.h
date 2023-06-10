@@ -10,9 +10,13 @@ class UserManager
 private:
     std::map<std::string, User> userNameToObjMap;
     int lastId{0};
+    std::string loggedUserName {""};
 
+    void resetLoggedUser();
 public:
     UserManager();
+
+    const User& getLoggedUser() const;
 
     void listUsers();
 

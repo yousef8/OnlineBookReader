@@ -1,7 +1,7 @@
 #include "userManager.h"
 #include "utilities.h"
 #include "user.h"
-#include "library.h"
+#include "bookManager.h"
 
 #include <iostream>
 #include <string>
@@ -11,9 +11,19 @@ UserManager::UserManager()
 {
     User admin{++lastId, "root", "root", "root@admin.com", "1234", 1};
     User customer{++lastId, "yousef", "yousefElsayed", "yousef@customer.com", "1234", 0};
-
+    User noOne;
+    
+    userNameToObjMap[noOne.getUserName()] = noOne;
     userNameToObjMap[admin.getUserName()] = admin;
     userNameToObjMap[customer.getUserName()] = customer;
+}
+
+void UserManager::resetLoggedUser() {
+    loggedUserName = "";
+}
+
+const User& UserManager::getLoggedUser() const {
+    return userNameToObjMap.find(loggedUserName)->second;
 }
 
 void UserManager::listUsers()
@@ -35,8 +45,8 @@ void UserManager::login()
             std::string password;
             std::cin >> password;
             if (loggedUser.getPassword() == password){
-                Library library(loggedUser);
-                return library.accessSystem();
+                loggedUserName =  loggedUser.getUserName();
+                return;
             }
         }
 
@@ -68,21 +78,22 @@ void UserManager::signUp()
 
 void UserManager::accessSystem()
 {
-    int choice = showReadMenu({"Log In", "Sign Up", "Exit", "List Users"});
+    int choice = showReadMenu({"Log In", "Sign Up", "List Users", "Exit"});
 
     switch (choice)
     {
     case 1:
-        login();
+        return login();
         break;
     case 2:
         signUp();
         break;
     case 3:
-        return;
-    case 4:
         listUsers();
         break;
+    case 4:
+        resetLoggedUser();
+        return;
     }
     return accessSystem();
 }

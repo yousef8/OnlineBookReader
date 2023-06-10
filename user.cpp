@@ -2,16 +2,14 @@
 #include <string>
 #include <iostream>
 
-User::User() : id(-1), isAdmin(0){
-
-                       };
+User::User() = default;
 
 User::User(int id, std::string userName, std::string name, std::string email, std::string password, bool isAdmin) : id{id}, userName{userName}, name{name}, email{email}, password{password}, isAdmin{isAdmin}
 {
 }
 
 // Getters
-int User::getId()
+int User::getId() const
 {
     return id;
 }
@@ -62,7 +60,7 @@ void User::setEmail(std::string email)
     this->email = email;
 }
 
-void User::setPassword(std::string getPassword)
+void User::setPassword(std::string password)
 {
     this->password = password;
 }

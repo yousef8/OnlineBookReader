@@ -7,28 +7,17 @@
 #include "book.h"
 #include <map>
 
-class Library {
+class BookManager{
 
 private:
-    User loggedUser;
     std::map<int, Book> isbnToBook;
-    SessionManager sessionManager;
+public:
+    BookManager();
+
     void addBook();
 
     void listBooks();
 
-    void listSelectSession();
-
-    void listSelectBook();
-
-    void adminView();
-
-    void userView();
-
-public:
-    Library(User loggedUser);
-
-    void accessSystem();
 };
 
 #endif

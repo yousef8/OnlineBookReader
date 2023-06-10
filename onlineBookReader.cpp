@@ -1,4 +1,7 @@
 #include "userManager.h"
+#include "bookManager.h"
+#include "sessionManager.h"
+
 #include "utilities.h"
 #include "user.h"
 
@@ -6,10 +9,26 @@
 #include <string>
 #include <map>
 
+class OnlineReader {
+    private:
+        SessionManager sessionManager;
+        BookManager bookManager;
+        UserManager userManager;
+    
+    public:
+        OnlineReader() = default;
+        void Run() {
+            // Login Phase
+            userManager.accessSystem();
+            if (!userManager.getLoggedUser().getId()) {
+                std::cout << "Goodbye from run\n";
+                return;
+            } 
+        }
+    
+};
 int main()
 {
-    UserManager system;
-    system.accessSystem();
-
-    return 0;
+    OnlineReader service;
+    service.Run();
 }

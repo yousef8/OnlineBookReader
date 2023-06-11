@@ -1,7 +1,7 @@
-#include "sessionManager.h"
-#include "session.h"
-#include "utilities.h"
-#include "book.h"
+#include "sessionManager.hpp"
+#include "session.hpp"
+#include "utilities.hpp"
+#include "book.hpp"
 
 #include <iostream>
 #include <map>

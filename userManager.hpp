@@ -1,7 +1,7 @@
 #ifndef _userManager_H_
 #define _userManager_H_
 
-#include "user.h"
+#include "user.hpp"
 #include <string>
 #include <map>
 

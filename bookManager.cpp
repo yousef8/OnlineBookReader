@@ -1,6 +1,6 @@
-#include "bookManager.h"
-#include "utilities.h"
-#include "book.h"
+#include "bookManager.hpp"
+#include "utilities.hpp"
+#include "book.hpp"
 
 #include <string>
 #include <vector>

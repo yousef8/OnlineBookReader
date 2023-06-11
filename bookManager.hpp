@@ -1,10 +1,10 @@
 #ifndef _library_H_
 #define _library_H_
 
-#include "session.h"
-#include "sessionManager.h"
-#include "user.h"
-#include "book.h"
+#include "session.hpp"
+#include "sessionManager.hpp"
+#include "user.hpp"
+#include "book.hpp"
 #include <map>
 
 class BookManager{

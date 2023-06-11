@@ -1,9 +1,9 @@
-#include "userManager.h"
-#include "bookManager.h"
-#include "sessionManager.h"
+#include "userManager.hpp"
+#include "bookManager.hpp"
+#include "sessionManager.hpp"
 
-#include "utilities.h"
-#include "user.h"
+#include "utilities.hpp"
+#include "user.hpp"
 
 #include <iostream>
 #include <string>

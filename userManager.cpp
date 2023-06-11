@@ -1,7 +1,7 @@
-#include "userManager.h"
-#include "utilities.h"
-#include "user.h"
-#include "bookManager.h"
+#include "userManager.hpp"
+#include "utilities.hpp"
+#include "user.hpp"
+#include "bookManager.hpp"
 
 #include <iostream>
 #include <string>

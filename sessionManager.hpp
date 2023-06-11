@@ -1,8 +1,8 @@
 #ifndef _sessionManager_H_
 #define _sessionManager_H_
 
-#include "session.h"
-#include "book.h"
+#include "session.hpp"
+#include "book.hpp"
 
 #include <string>
 #include <map>

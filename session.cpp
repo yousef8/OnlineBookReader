@@ -1,6 +1,6 @@
-#include "session.h"
-#include "book.h"
-#include "utilities.h"
+#include "session.hpp"
+#include "book.hpp"
+#include "utilities.hpp"
 
 #include <string>
 #include <ctime>

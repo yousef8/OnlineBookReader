@@ -1,5 +1,5 @@
-#ifndef _sessionManager_H_
-#define _sessionManager_H_
+#ifndef SESSIONMANAGER_6122023_H
+#define SESSIONMANAGER_6122023_H
 
 #include "session.hpp"
 #include "book.hpp"

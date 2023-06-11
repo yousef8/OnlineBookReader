@@ -1,5 +1,5 @@
-#ifndef _userManager_H_
-#define _userManager_H_
+#ifndef USERMANAGER_6122023_H
+#define USERMANAGER_6122023_H
 
 #include "user.hpp"
 #include <string>

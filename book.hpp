@@ -1,5 +1,5 @@
-#ifndef _book_H_
-#define _book_H_
+#ifndef BOOK_6122023_H
+#define BOOK_6122023_H
 
 #include <vector>
 #include <map>

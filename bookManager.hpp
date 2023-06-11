@@ -1,5 +1,5 @@
-#ifndef _library_H_
-#define _library_H_
+#ifndef BOOKMANAGER_6122023_H
+#define BOOKMANAGER_6122023_H
 
 #include "session.hpp"
 #include "sessionManager.hpp"

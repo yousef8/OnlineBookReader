@@ -2,7 +2,6 @@
 #define BOOK_6122023_H
 
 #include <vector>
-#include <map>
 #include <string>
 
 class Book {
@@ -11,23 +10,23 @@ class Book {
         std::string title;
         std::string authorName;
         int numOfPages;
-        std::map<int, std::string> pagesToContent;
+        std::vector<std::string> pagesToContent;
     
     public:
         Book();
         // Setters
-        void setISBN(int isbn);
-        void setTitle(std::string title);
-        void setAuthorName(std::string authorName);
-        void setNumOfPages(int numOfPages);
-        void setContent(std::vector<std::string>);
+        void setISBN(int isbn_);
+        void setTitle(std::string title_);
+        void setAuthorName(std::string authorName_);
+        void setNumOfPages(int numOfPages_);
+        void setContent(const std::vector<std::string>& pagesToContent_);
 
         // Getters
-        int getISBN();
-        std::string getTitle();
-        std::string getAuthorName();
-        int getNumOfPages();
-        std::map<int, std::string> getContent();
+        int getISBN() const;
+        std::string getTitle() const ;
+        std::string getAuthorName() const ;
+        int getNumOfPages() const ;
+        const std::vector<std::string>& getContent() const;
 
         // Other
         void print();

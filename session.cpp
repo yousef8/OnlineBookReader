@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-Session::Session(Book book): book(book), currPage(1) {
+Session::Session(Book book): book(book), currPage(0) {
 }
 
 // Getters
@@ -18,7 +18,7 @@ Book* Session::getBook() {
 
 
 int Session::getCurrPage() {
-    return currPage;
+    return currPage+1;
 }
 
 std::string Session::getEndSessionTime() {
@@ -49,11 +49,11 @@ void Session::start() {
     int choice = showReadMenu({"Next", "Previous", "Stop"});
     switch (choice) {
         case 1:
-            (currPage == book.getNumOfPages()) ? currPage : ++currPage;
+            (currPage == book.getNumOfPages()-1) ? currPage : ++currPage;
             start();
             break;
         case 2:
-            (currPage == 1) ? currPage : --currPage;
+            (currPage == 0) ? currPage : --currPage;
             start();
             break;
         case 3:

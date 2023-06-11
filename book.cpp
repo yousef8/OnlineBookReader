@@ -9,48 +9,46 @@ Book::Book() {
     isbn =  numOfPages = -1;
 }
 
-void Book::setISBN(int isbn) {
-    this->isbn = isbn;
+void Book::setISBN(int isbn_) {
+    isbn = isbn_;
 }
 
-void Book::setTitle(std::string title) {
-    this->title = title;
+void Book::setTitle(std::string title_) {
+    title = title_;
 }
 
-void Book::setAuthorName(std::string authorName) {
-    this->authorName = authorName;
+void Book::setAuthorName(std::string authorName_) {
+    authorName = authorName_;
 }
 
-void Book::setNumOfPages(int numOfPages) {
-    this->numOfPages = numOfPages;
+void Book::setNumOfPages(int numOfPages_) {
+    numOfPages = numOfPages_;
 }
 
-void Book::setContent(std::vector<std::string> pagesToContent) {
-    for (int i {numOfPages}; i > 0; i--){
-        this->pagesToContent[i] = pagesToContent.back();
-        pagesToContent.pop_back();
-    }
+void Book::setContent(const std::vector<std::string>& pagesToContent_) {
+        for (auto& content : pagesToContent_)
+            pagesToContent.push_back(content);
 }
 
 // Getters
 
-int Book::getISBN() {
+int Book::getISBN() const {
     return isbn;
 }
 
-std::string Book::getTitle() {
+std::string Book::getTitle() const {
     return title;
 }
 
-std::string Book::getAuthorName() {
+std::string Book::getAuthorName() const {
     return authorName;
 }
 
-int Book::getNumOfPages() {
+int Book::getNumOfPages() const {
     return numOfPages;
 }
 
-std::map<int, std::string> Book::getContent() {
+const std::vector<std::string>& Book::getContent() const{
     return pagesToContent;
 }
 

@@ -4,7 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <string_view>
+#include <utility>
 
 class Book {
     private:
@@ -15,9 +16,8 @@ class Book {
         std::vector<std::string> pagesToContent;
     
     public:
-        Book(){
-           title = authorName = "";
-            isbn =  numOfPages = -1;
+        Book(): 
+            isbn {-1}, numOfPages {-1}, title {""}, authorName{""} {
         }
 
         // Setters
@@ -26,20 +26,20 @@ class Book {
         }
 
         void setTitle(std::string title_){
-            title = title_;
+            title = std::move(title_);
         }
         
         void setAuthorName(std::string authorName_) {
-            authorName = authorName_;
+            authorName = std::move(authorName_);
         }
         
         void setNumOfPages(int numOfPages_){
             numOfPages = numOfPages_;
         }
         
-        void setContent(const std::vector<std::string>& pagesToContent_){
+        void setContent(std::vector<std::string> pagesToContent_){
             for (auto& content : pagesToContent_)
-                pagesToContent.push_back(content);
+                pagesToContent.push_back(std::move(content));
         }
 
         // Getters
@@ -47,11 +47,11 @@ class Book {
             return isbn;
         }
         
-        std::string getTitle() const {
+        std::string_view getTitle() const {
             return title;
         }
         
-        std::string getAuthorName() const {
+        std::string_view getAuthorName() const {
             return authorName;
         }
         
@@ -64,7 +64,7 @@ class Book {
         }
 
         // Other
-        void print(){
+        void print() const {
             std::cout << "\n" << "ISBN : " << getISBN()
                 << "\n" << "Title : " << getTitle()
                 << "\n" << "Author : " << getAuthorName()
@@ -77,12 +77,12 @@ class Book {
             std::cout << "Enter Title : ";
             std::string title;
             std::cin >> title;
-            setTitle(title);
+            setTitle(std::move(title));
 
             std::cout << "Enter Author Name : ";
             std::string name;
             std::cin >> name;
-            setAuthorName(name);
+            setAuthorName(std::move(name));
 
             std::cout << "How many pages : ";
             int count;
@@ -94,7 +94,7 @@ class Book {
                 std::cout << "Enter page #" << i << " : ";
                 std::string content;
                 std::cin >> content;
-                bookContent.push_back(content);
+                bookContent.push_back(std::move(content));
             }
             setContent(bookContent);
 

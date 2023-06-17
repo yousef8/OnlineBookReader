@@ -7,18 +7,18 @@
 
 class Session {
     private:
-        Book book;
+        const Book& book;
         int currPage;
         tm* endSessionTime;
 
         void updateEndSessionTime();
     public:
-        Session(Book book);
+        Session(const Book& book);
 
         // Getters
-        Book* getBook();
-        int getCurrPage();
-        std::string getEndSessionTime();
+        const Book& getBook() const;
+        int getCurrPage() const;
+        std::string getEndSessionTime() const;
 
         // Other
         void start();

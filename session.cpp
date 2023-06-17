@@ -7,21 +7,21 @@
 #include <sstream>
 
 
-Session::Session(Book book): book(book), currPage(0) {
+Session::Session(const Book& book): book(book), currPage(0) {
 }
 
 // Getters
 
-Book* Session::getBook() {
-    return &book;
+const Book& Session::getBook() const{
+    return book;
 }
 
 
-int Session::getCurrPage() {
+int Session::getCurrPage() const{
     return currPage+1;
 }
 
-std::string Session::getEndSessionTime() {
+std::string Session::getEndSessionTime() const{
     std::ostringstream oss;
 
     oss << 1900+ endSessionTime->tm_year << "-";

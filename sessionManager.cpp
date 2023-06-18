@@ -6,6 +6,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include <ctime>
 
 SessionManager::SessionManager(): lastId(0) {
 }
@@ -20,7 +21,7 @@ void SessionManager::listSessions() const {
     for (std::pair<int, Session*> p : sessions){
         std::cout << p.first << ". " << p.second->getBook().getTitle()
             << " - " <<  p.second->getCurrPage() << "/" << p.second->getBook().getNumOfPages()
-            << " - " << p.second->getEndSessionTime() << "\n";
+            << " - " << ctime(&p.second->getEndSessionTime()) << "\n";
     }
 }
 

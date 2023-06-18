@@ -2,14 +2,14 @@
 #define SESSION_6122023_H
 
 #include "book.hpp"
-#include <ctime>
 #include <string>
+#include <ctime>
 
 class Session {
     private:
         const Book& book;
         int currPage;
-        tm* endSessionTime;
+        time_t endSessionTime;
 
         void updateEndSessionTime();
     public:
@@ -18,7 +18,7 @@ class Session {
         // Getters
         const Book& getBook() const;
         int getCurrPage() const;
-        std::string getEndSessionTime() const;
+        const time_t& getEndSessionTime() const;
 
         // Other
         void start();

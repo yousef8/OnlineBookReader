@@ -4,8 +4,7 @@
 
 #include <string>
 #include <ctime>
-#include <sstream>
-
+#include <chrono>
 
 Session::Session(const Book& book): book(book), currPage(0) {
 }
@@ -21,25 +20,13 @@ int Session::getCurrPage() const{
     return currPage+1;
 }
 
-std::string Session::getEndSessionTime() const{
-    std::ostringstream oss;
-
-    oss << 1900+ endSessionTime->tm_year << "-";
-    oss << 1 + endSessionTime->tm_mon << "-";
-    oss << endSessionTime->tm_mday << " ";
-
-    oss << endSessionTime->tm_hour << ":";
-    oss << endSessionTime->tm_min << ":";
-    oss << endSessionTime->tm_sec;
-
-    return oss.str();
+const time_t& Session::getEndSessionTime() const{
+    return endSessionTime;
 }
 
 // Other
 void Session::updateEndSessionTime() {
-    std::time_t now = time(0);
-
-    endSessionTime = localtime(&now);
+    endSessionTime = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 }
 
 

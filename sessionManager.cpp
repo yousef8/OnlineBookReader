@@ -4,39 +4,30 @@
 #include "book.hpp"
 
 #include <iostream>
-#include <map>
+#include <vector>
 #include <string>
 #include <ctime>
 
-SessionManager::SessionManager(): lastId(0) {
-}
+SessionManager::SessionManager() = default;
 
 SessionManager::~SessionManager() {
-    for (auto p : sessions)
-        delete p.second;
     std::cout << "Deleted All Sessions\n";
 }
 
 void SessionManager::listSessions() const {
-    for (std::pair<int, Session*> p : sessions){
-        std::cout << p.first << ". ";
-        p.second->print();
-    }
+  for (int i {0}; i < getNumOfSessions(); i++) {
+    std::cout << i+1 << ". ";
+    sessions[i].print();
+  }
 }
 
 void SessionManager::startSession(const Book& book) {
-    Session* session = new Session(book);
-    session->start();
-    sessions.insert(std::pair<int, Session*>(++lastId, session));
-    return;
+  sessions.emplace_back(Session(book));
+  sessions.back().start();
 }
 
-Session* SessionManager::getSession(int idx) const{
-    return sessions.at(idx);
-}
-
-void SessionManager::startSession(Session* currSession) {
-    currSession->start();
+void SessionManager::startSession(int currSession) {
+    sessions[currSession].start();
 }
 
 int SessionManager::getNumOfSessions() const {

@@ -5,12 +5,11 @@
 #include "book.hpp"
 
 #include <string>
-#include <map>
+#include <vector>
 
 class SessionManager{
     private:
-        std::map<int, Session*> sessions;        
-        int lastId;
+        std::vector<Session> sessions;        
     
     public:
         SessionManager();
@@ -18,8 +17,7 @@ class SessionManager{
 
         void listSessions() const;
         void startSession(const Book& book);
-        Session* getSession(int idx) const;
-        void startSession(Session* currSession);
+        void startSession(int currSession);
         int getNumOfSessions() const;
 };
 

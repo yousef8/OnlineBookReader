@@ -29,7 +29,7 @@ class OnlineReader {
                         int sessionIdx = readInt(0, sessionManager.getNumOfSessions());
                         if (!sessionIdx)
                             continue;
-                        sessionManager.startSession(sessionManager.getSession(sessionIdx));
+                        sessionManager.startSession(--sessionIdx);
                         break;
                         }
                     case 3:

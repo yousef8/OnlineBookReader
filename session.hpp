@@ -22,6 +22,7 @@ class Session {
 
         // Other
         void start();
+        void print() const;
 };
 
 #endif

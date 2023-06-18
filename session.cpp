@@ -48,3 +48,7 @@ void Session::start() {
             return;
     }
 }
+
+void Session::print() const {
+    std::cout << getBook().getTitle() << " - " << getCurrPage() << "/" << getBook().getNumOfPages() << " - " << ctime(&getEndSessionTime()) << "\n";
+}

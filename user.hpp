@@ -28,22 +28,22 @@ public:
       return id;
     }
 
-    std::string getUserName() const
+    const std::string& getUserName() const
     {
       return userName;
     }
 
-    std::string getName() const
+    const std::string& getName() const
     {
       return name;
     }
 
-    std::string getEmail() const
+    const std::string& getEmail() const
     {
       return email;
     }
 
-    std::string getPassword() const
+    const std::string& getPassword() const
     { 
       return password;
     }

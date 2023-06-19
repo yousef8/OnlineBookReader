@@ -39,11 +39,11 @@ void BookManager::addBook() {
 void BookManager::listBooks(bool adminView) {
     std::cout << "\nAvailable Books : \n";
     if (adminView)
-        for (std::pair<int, Book> p : isbnToBook)
-            p.second.print(), std::cout << "\n";
+        for (const auto& [isbn, book]: isbnToBook)
+            book.print(), std::cout << "\n";
     else {
         int count = 1;
-        for (auto& [isbn, book] : isbnToBook)
+        for (const auto& [isbn, book] : isbnToBook)
             std::cout << count++ << ". " << book.getTitle() << "\n";
     }
 }

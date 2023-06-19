@@ -72,7 +72,7 @@ class OnlineReader {
         void Run() {
             // Login Phase
             userManager.accessSystem();
-            if (!userManager.getLoggedUser().getId()) {
+            if (!userManager.isUserLogged()) {
                 std::cout << "GoodBye\n";
                 return;
             }

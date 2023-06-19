@@ -3,16 +3,16 @@
 
 #include "user.hpp"
 #include <string>
-#include <map>
+#include <vector>
 
 class UserManager
 {
 private:
-    std::map<std::string, User> userNameToObjMap;
-    int lastId{0};
-    std::string loggedUserName {""};
+    std::vector<User> users;
+    int loggedUserIdx = -1;
 
     void resetLoggedUser();
+    int findUser(const std::string& userName) const;
 public:
     UserManager();
 
@@ -25,6 +25,7 @@ public:
     void signUp();
 
     void accessSystem();
+    bool isUserLogged() const;
 };
 
 #endif

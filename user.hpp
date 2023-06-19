@@ -8,7 +8,6 @@
 class User
 {
 private:
-    int id {0};
     std::string userName {""};
     std::string name {""};
     std::string email {""};
@@ -18,16 +17,11 @@ private:
 public:
     User() = default;
 
-    User(int id, std::string userName, std::string name, std::string email, std::string password, bool isAdmin) : id{id}, userName{userName}, name{name}, email{email}, password{password}, isAdmin{isAdmin}
+    User(std::string userName, std::string name, std::string email, std::string password, bool isAdmin) :userName{userName}, name{name}, email{email}, password{password}, isAdmin{isAdmin}
     {
     }
 
     // Getters
-    int getId() const
-    {
-      return id;
-    }
-
     const std::string& getUserName() const
     {
       return userName;
@@ -54,11 +48,6 @@ public:
     }
 
     // Setters
-    void setId(int id_)
-    {
-      id = id_;
-    }
-
     void setUserName(std::string userName_)
     {
       userName = std::move(userName_);
@@ -84,9 +73,8 @@ public:
       isAdmin = isAdmin_;
     }
 
-    void readUser(std::string userName, int id)
+    void readUser(std::string userName)
     {
-      setId(id);
       setUserName(std::move(userName));
       setIsAdmin(0);
 

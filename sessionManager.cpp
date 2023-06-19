@@ -1,35 +1,38 @@
 #include "sessionManager.hpp"
 #include "session.hpp"
-#include "utilities.hpp"
-#include "book.hpp"
 
 #include <iostream>
 #include <vector>
 #include <string>
-#include <ctime>
-
+#include <map>
 SessionManager::SessionManager() = default;
 
 SessionManager::~SessionManager() {
-    std::cout << "Deleted All Sessions\n";
+  std::cout << "Deleted All Sessions\n";
 }
 
-void SessionManager::listSessions() const {
-  for (int i {0}; i < getNumOfSessions(); i++) {
+void SessionManager::listSessions(const std::string& userName) const {
+  if (!usernameToSessionsMap.count(userName))
+    return;
+
+  for (int i {0}; i < getNumOfSessions(userName); i++) {
     std::cout << i+1 << ". ";
-    sessions[i].print();
+    usernameToSessionsMap.at(userName)[i].print();
   }
 }
 
-void SessionManager::startSession(const Book& book) {
-  sessions.emplace_back(Session(book));
-  sessions.back().start();
+void SessionManager::startSession(const std::string& userName, const Book& book) {
+  usernameToSessionsMap[userName].emplace_back(Session(book));
+  usernameToSessionsMap[userName].back().start();
 }
 
-void SessionManager::startSession(int currSession) {
-    sessions[currSession].start();
+void SessionManager::startSession(const std::string& userName, int currSession) {
+  usernameToSessionsMap[userName][currSession].start();
 }
 
-int SessionManager::getNumOfSessions() const {
-    return sessions.size();
+int SessionManager::getNumOfSessions(const std::string& userName) const {
+  if (usernameToSessionsMap.count(userName))
+    return usernameToSessionsMap.at(userName).size();
+
+  return 0;
 }

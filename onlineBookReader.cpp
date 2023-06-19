@@ -25,11 +25,11 @@ class OnlineReader {
                         break;
                     case 2:
                         {
-                        sessionManager.listSessions();
-                        int sessionIdx = readInt(0, sessionManager.getNumOfSessions());
+                        sessionManager.listSessions(userManager.getLoggedUser().getUserName());
+                        int sessionIdx = readInt(0, sessionManager.getNumOfSessions(userManager.getLoggedUser().getUserName()));
                         if (!sessionIdx)
                             continue;
-                        sessionManager.startSession(--sessionIdx);
+                        sessionManager.startSession(userManager.getLoggedUser().getUserName(), --sessionIdx);
                         break;
                         }
                     case 3:
@@ -38,7 +38,7 @@ class OnlineReader {
                         int bookIdx = readInt(0, bookManager.getNumOfBooks());
                         if (!bookIdx)
                             continue;
-                        sessionManager.startSession(bookManager.getBook(bookIdx));
+                        sessionManager.startSession(userManager.getLoggedUser().getUserName(), bookManager.getBook(bookIdx));
                         break;
                     }
                     case 4:

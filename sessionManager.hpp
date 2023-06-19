@@ -6,19 +6,20 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 class SessionManager{
     private:
-        std::vector<Session> sessions;        
+        std::map<std::string, std::vector<Session>> usernameToSessionsMap;
     
     public:
         SessionManager();
         ~SessionManager();
 
-        void listSessions() const;
-        void startSession(const Book& book);
-        void startSession(int currSession);
-        int getNumOfSessions() const;
+        void listSessions(const std::string& userName) const;
+        void startSession(const std::string& userName, const Book& book);
+        void startSession(const std::string& userName, int currSession);
+        int getNumOfSessions(const std::string& userName) const;
 };
 
 #endif

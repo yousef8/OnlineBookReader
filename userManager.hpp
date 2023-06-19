@@ -11,11 +11,11 @@ private:
     std::vector<User> users;
     int loggedUserIdx = -1;
 
-    void resetLoggedUser();
     int findUser(const std::string& userName) const;
 public:
     UserManager();
 
+    void resetLoggedUser();
     const User& getLoggedUser() const;
 
     void listUsers();

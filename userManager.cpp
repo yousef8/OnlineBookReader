@@ -80,12 +80,15 @@ void UserManager::signUp()
 
 void UserManager::accessSystem()
 {
+    resetLoggedUser();
     int choice = showReadMenu({"Log In", "Sign Up", "List Users", "Exit"});
 
     switch (choice)
     {
     case 1:
-        return login();
+        login();
+        if (isUserLogged())
+            return;
         break;
     case 2:
         signUp();
@@ -94,7 +97,6 @@ void UserManager::accessSystem()
         listUsers();
         break;
     case 4:
-        resetLoggedUser();
         return;
     }
     return accessSystem();
